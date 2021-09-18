@@ -1,0 +1,25 @@
+    MinCost =  Pow2(Packs[0].ND + \
+                max(Packs[1].ND, Packs[2].ND));
+    if (MaxLen >= Packs[1].ST + Packs[2].ST)
+        MinCost += Pow2(MaxLen);                
+    else 
+        MinCost += Pow2(Packs[1].ST + Packs[2].ST);
+    Costs.push_back(MinCost);
+
+    for (int i = 0; i < 2; i++){
+        MinCost = Pow2(Packs[0].ND + \
+                   max(Packs[i+1].ND , Packs[(i+1)%2+1].ST));
+        if (MaxLen >= Packs[i+1].ST + Packs[(i+1)%2+1].ND)
+            MinCost += Pow2(MaxLen);
+        else 
+            MinCost += Pow2(Packs[i+1].ST + Packs[(i+1)%2+1].ND);
+        Costs.push_back(MinCost);
+    }
+
+    MinCost =  Pow2(Packs[0].ND + \
+                    Packs[1].ST);
+    if (MaxLen >= Packs[1].ND + Packs[2].ND)
+        MinCost += Pow2(MaxLen);
+    else 
+        MinCost += Pow2(Packs[1].ND + Packs[2].ND);
+    Costs.push_back(MinCost);
